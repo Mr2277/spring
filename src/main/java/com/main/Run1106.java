@@ -21,6 +21,7 @@ import java.util.List;
 
 public class Run1106 {
     public static void main(String[] args) throws SQLException {
+
         ApplicationContext context = new ClassPathXmlApplicationContext("classpath:context.xml");
         Team team=context.getBean(Team.class);
         System.out.println(team.person.age);
