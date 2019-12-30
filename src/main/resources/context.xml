@@ -11,7 +11,7 @@
     http://www.springframework.org/schema/context/spring-context-4.2.xsd">
     <context:component-scan base-package="com.*"/>
     <context:property-placeholder location="classpath:jdbc.properties" />
-    <!--
+
     <bean id="person" class="com.bean.Person">
         <property name="name" value="janes"></property>
         <property name="age" value="12"></property>
@@ -22,5 +22,5 @@
         <property name="username" value="${jdbc.username}"/>
         <property name="password" value="${jdbc.password}"/>
     </bean>
-    -->
+
 </beans>

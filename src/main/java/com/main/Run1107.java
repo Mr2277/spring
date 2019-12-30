@@ -9,6 +9,9 @@ import org.springframework.context.annotation.AnnotationConfigApplicationContext
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
 
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
@@ -27,7 +30,8 @@ public class Run1107 {
         Coach coach=context.getBean(Coach.class);
         System.out.println(coach);
         MysqlCon mysqlCon=context.getBean(MysqlCon.class);
-        System.out.println(mysqlCon.jdbcUrl);
+
+        //System.out.println(mysqlCon.jdbcUrl);
         /*
         AnnotationConfigApplicationContext applicationContext=new AnnotationConfigApplicationContext();
         applicationContext.register(MysqlConfig.class);

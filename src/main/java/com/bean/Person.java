@@ -2,8 +2,10 @@ package com.bean;
 
 import org.springframework.stereotype.Component;
 
+import java.io.Serializable;
+
 @Component
-public class Person {
+public class Person implements Serializable {
     public String name;
     public String age;
 
