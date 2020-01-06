@@ -1,39 +1,43 @@
 package com.main;
 
-import com.bean.Coach;
 import com.bean.Person;
-import com.bean.RedisCon;
-import com.config.MysqlConfig;
 import com.config.SpringConfig;
-import com.util.KryoUtil;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
+import org.springframework.stereotype.Component;
 import redis.clients.jedis.Jedis;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
-import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.Iterator;
-import java.util.List;
-import java.util.Set;
-
+@Component
 public class RunRedis {
+
+    public void insert(DriverManagerDataSource dataSource) throws SQLException {
+        Connection conn=dataSource.getConnection();
+        String sql="insert into test values(null,'fly') ";
+        PreparedStatement preparedStatement=conn.prepareStatement(sql);
+        preparedStatement.execute();
+    }
     public static void main(String[] args) throws SQLException {
         ApplicationContext context=new AnnotationConfigApplicationContext(SpringConfig.class);
-        Jedis jedis=context.getBean(Jedis.class);
         DriverManagerDataSource dataSource=context.getBean(DriverManagerDataSource.class);
+         RunRedis runRedis=new RunRedis();
+         for(int i=0;i<100;i++) {
+             runRedis.insert(dataSource);
+         }
+        //System.out.println(dataSource);
+        //System.out.println(person);
+        //System.out.println(jedis);
+        //DriverManagerDataSource dataSource=context.getBean(DriverManagerDataSource.class);
+        /*
         Connection conn=dataSource.getConnection();
-
-        String sql="select * from graph_node_final where NID='1e8f51eb-a0c5-4d0d-920a-08689e4c78f8'";
+        String sql="insert into test values(null,'fly') ";
         PreparedStatement preparedStatement=conn.prepareStatement(sql);
-        ResultSet rs=preparedStatement.executeQuery();
-        while(rs.next()){
-            //System.out.println();
-            String H_NAME=rs.getString("H_NAME");
-            System.out.println(H_NAME.length());
-        }
+        preparedStatement.execute();
+
         /*
         Set<String> set=jedis.keys("*");
         Iterator<String> iterable=  set.iterator();
